@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+body{
+    width: 100%;
+}
+.icon{
+    cursor: pointer;
+    transition: all .4s ease;
+    svg{
+        path{
+            transition: all .4s ease;
+            stroke: #9B9B9B;
+            color: transparent;
+        }
+    }
+    &:hover{
+        svg{
+            path{
+                transition: all .4s ease;
+                stroke: #1cdf1c;
+            }
+        }
+    }
+}
+
+.icon1{
+    cursor: pointer;
+    transition: all .4s ease;
+    svg{
+        path{
+            transition: all .4s ease;
+            color: #9B9B9B;
+        }
+    }
+    &:hover{
+        svg{
+            path{
+                transition: all .4s ease;
+                color: #1cdf1c;
+            }
+        }
+    }
+}
+
+
+.swiper-button-next,
+.swiper-button-prev{
+    min-width: 44px;
+    min-height: 35px;
+    background-color: #fff;
+    border-radius: 100px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::after{
+        --swiper-navigation-size: 22px;
+        --swiper-theme-color: #C8C8C8;
+        font-weight: bold;
+        
+    }
+}
+
+.swiper-button-next{
+    &::after{
+        position: absolute;
+        left: 18px;
+    }
+}
+
+.swiper-button-prev{
+    &::after{
+        position: absolute;
+        left: 14px;
+    }
+}
+
+.like{
+    svg{
+        path{
+            transition: all 0.5s ease;
+            stroke: #EAEAEA;
+            fill: transparent;
+        }
+    }
+    &:hover{
+        svg{
+            path{
+                transition: all 0.5s ease;
+                stroke: #ff0000;
+                fill: transparent;
+            }
+        }
+    }
+    &.active{
+        svg{
+            path{
+                transition: all 0.5s ease;
+                stroke: #ff0000;
+                fill: #ff0000 ! important;
+            }
+        }
+    }
+}
+
+.hvTovar{
+    transition: all .4s ease;
+    &:hover{
+        transform: translateY(-10px);
+        cursor: pointer;
+        transition: all .4s ease;
+        box-shadow: 0px 14px 30px #0000001e;
+    }
+}
+
+.active{
+    position: fixed;
+    opacity: 1 !important;
+    visibility: visible !important;
+    right: 0px !important;
+    top: 0px !important;
+    transform: translateX(-385px) !important;
+    transition: all .4s ease !important;
+    z-index: 1;
+
+}
+
+.cartWindov{
+    &::after{
+        position: relative;
+        content: ' ';
+        width: 100vw;
+        height: 100vh;
+        background-color: #00000083;
+    }
+}

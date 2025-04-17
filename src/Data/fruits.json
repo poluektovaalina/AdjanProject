@@ -1,0 +1,142 @@
+[
+    {
+      "id": 1,
+      "title": "Зеленое яблоко",
+      "price": "500",
+      "weight": true,
+      "image": "/banana.png"
+    },
+    {
+      "id": 2,
+      "title": "Спелый банан",
+      "price": "120",
+      "weight": true,
+      "image": "/avocado.png"
+    },
+    {
+      "id": 3,
+      "title": "Сочный апельсин",
+      "price": "300",
+      "weight": true,
+      "image": "/avocado.png"
+    },
+    {
+      "id": 4,
+      "title": "Красная клубника",
+      "price": "800",
+      "weight": false,
+      "image": "/banana.png"
+    },
+    {
+      "id": 5,
+      "title": "Сладкий виноград",
+      "price": "650",
+      "weight": false,
+      "image": "/banana.png"
+    },
+    {
+      "id": 6,
+      "title": "Желтый лимон",
+      "price": "250",
+      "weight": true,
+      "image": "/banana.png"
+    },
+    {
+      "id": 7,
+      "title": "Ароматная груша",
+      "price": "400",
+      "weight": true,
+      "image": "/avocado.png"
+    },
+    {
+      "id": 8,
+      "title": "Синяя голубика",
+      "price": "1200",
+      "weight": false,
+      "image": "/banana.png"
+    },
+    {
+      "id": 9,
+      "title": "Экзотический манго",
+      "price": "950",
+      "weight": true,
+      "image": "/avocado.png"
+    },
+    {
+      "id": 10,
+      "title": "Спелая вишня",
+      "price": "700",
+      "weight": false,
+      "image": "/banana.png"
+    },
+    {
+      "id": 11,
+      "title": "Зеленый лайм",
+      "price": "280",
+      "weight": true,
+      "image": "/banana.png"
+    },
+    {
+      "id": 12,
+      "title": "Сочная малина",
+      "price": "1100",
+      "weight": false,
+      "image": "/banana.png"
+    },
+    {
+      "id": 13,
+      "title": "Крупный грейпфрут",
+      "price": "450",
+      "weight": true,
+      "image": "/banana.png"
+    },
+    {
+      "id": 14,
+      "title": "Черная ежевика",
+      "price": "900",
+      "weight": false,
+      "image": "/banana.png"
+    },
+    {
+      "id": 15,
+      "title": "Сладкий персик",
+      "price": "550",
+      "weight": true,
+      "image": "/banana.png"
+    },
+    {
+      "id": 16,
+      "title": "Киви",
+      "price": "380",
+      "weight": true,
+      "image": "/banana.png"
+    },
+    {
+      "id": 17,
+      "title": "Ананас",
+      "price": "1500",
+      "weight": true,
+      "image": "/banana.png"
+    },
+    {
+      "id": 18,
+      "title": "Гранат",
+      "price": "750",
+      "weight": true,
+      "image": "/banana.png"
+    },
+    {
+      "id": 19,
+      "title": "Слива",
+      "price": "320",
+      "weight": true,
+      "image": "/banana.png"
+    },
+    {
+      "id": 20,
+      "title": "Арбуз (кусок)",
+      "price": "800",
+      "weight": true,
+      "image": "/banana.png"
+    }
+  ]
