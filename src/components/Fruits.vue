@@ -1,6 +1,13 @@
 <template>
-    <div class="px-[60px] py-[40px] flex gap-[40px] flex-wrap">
-        <tovar v-for="fruit in fruits" :key="fruit.id" :fruit="fruit"></tovar>
+    <div v-auto-animate>
+        <div  v-if="fruits.length > 0" class="px-[60px] py-[40px] flex gap-[40px] flex-wrap">
+            <tovar v-for="fruit in fruits" :key="fruit.id" :fruit="fruit"></tovar>
+        </div>
+        <div v-else class="h-[90vh] flex flex-col items-center justify-center ">
+            <div>
+                <img class="object-cover" src="../assets/image 9.png" alt="">
+            </div>
+        </div>
     </div>
 </template>
 

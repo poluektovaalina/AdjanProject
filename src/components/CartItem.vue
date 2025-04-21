@@ -28,10 +28,7 @@
 </template>
 
 <script setup>
-defineProps({
-    fruit: Object
-})
+    
 
 
 </script>
-

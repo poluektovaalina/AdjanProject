@@ -1,10 +1,12 @@
 <template>
-    <div class="bg-white rounded-[20px] h-screen">
-        <Header />
+    <div class="bg-white rounded-[20px]">
+        <Header :toggleCart="toggleCart"/>
         <Slider />
         <search :onChange="onChange" />
         <Fruits :fruits="fruits" />
-        <Cart v-if="condition" @click="condition = false"/>
+        <div v-if="isOpenCart" ></div>
+        <div v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1"></div>
+        <Cart  v-if="toggleCart" :toggleCart="toggleCart" :isOpenCart="isOpenCart"/>
     </div>
 </template>
 
@@ -22,13 +24,17 @@ import CardData from '../Data/card.json'
 import { ref } from 'vue'
 
 const fruits = ref(Data)
-const card = ref(CardData)
 const searchText = ref('')
 
-// let condition = ref('false')
-// document.querySelector('.icon').addEventListener('click', () => {
-//     condition = ref('true')
-// })
+let isOpenCart = ref(false)
+
+function toggleCart() {
+    isOpenCart.value = !isOpenCart.value
+
+}
+
+
+
 
 function onChange() {
     const input = document.querySelector('input').value

@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#275B1A] h-screen px-[100px] py-[70px]">
+    <div class="bg-[#275B1A] px-[100px] py-[70px]">
         <Main />
         
     </div>

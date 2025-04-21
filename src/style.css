@@ -125,12 +125,14 @@ body{
 
 }
 
-.cartWindov{
-    &::after{
-        position: relative;
-        content: ' ';
-        width: 100vw;
-        height: 100vh;
-        background-color: #00000083;
-    }
+.hide {
+    position: fixed;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    right: 0px !important;
+    top: 0px !important;
+    transform: translateX(0px) !important;
+    transition: all .4s ease !important;
+    z-index: 3;
 }
+
