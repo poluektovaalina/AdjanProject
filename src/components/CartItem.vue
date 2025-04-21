@@ -28,7 +28,9 @@
 </template>
 
 <script setup>
-    
 
+defineProps({
+    cartItem: Object
+})
 
 </script>

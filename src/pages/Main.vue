@@ -21,6 +21,7 @@ import Cart from '../components/Cart.vue'
 import Data from '../Data/fruits.json'
 import CardData from '../Data/card.json'
 
+
 import { ref } from 'vue'
 
 const fruits = ref(Data)

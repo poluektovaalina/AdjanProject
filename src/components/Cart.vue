@@ -13,19 +13,16 @@
                     </svg>
                 </div>
             </div>
-            <div>
-                <tovar />
-                <tovar />
-                <tovar />
-                <tovar />
-                <tovar />
-                <tovar />
+            <div class="flex flex-col gap-[10px] overflow-y-auto">
+                <!-- <CartItem /> -->
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
+import CartItem from './CartItem.vue';
+
 
     
     defineProps({
