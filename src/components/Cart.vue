@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div :class="[
+        <div class="overflow-y-auto" :class="[
             'cart  opacity-0 invisible translate-x-[385px] w-[385px] h-screen bg-[#fff] p-[30px] shadow-[-10px_4px_24px_#0000001A]', 
             isOpenCart ? 'active' : 'hide' 
             ]">
@@ -13,21 +13,23 @@
                     </svg>
                 </div>
             </div>
-            <div class="flex flex-col gap-[10px] overflow-y-auto">
-                <!-- <CartItem /> -->
+            <div class="flex flex-col gap-[10px] ">
+                <CartItem  v-for="cartItem in cartItems" :key="cartItem.id" :cartItem="cartItem"  @removeItemCart="removeItemCart"/>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import CartItem from './CartItem.vue';
+    import CartItem from './CartItem.vue';
 
 
     
     defineProps({
         isOpenCart: Boolean,
-        toggleCart: Function
+        toggleCart: Function,
+        cartItems: Array,
+        removeItemCart: Function
     })
 
 </script>

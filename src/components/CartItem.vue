@@ -9,17 +9,17 @@
                 </svg>
             </div>
             <div class="w-[150px]">
-                <img class="w-full" src="../assets/image 11.png" alt="">
+                <img class="w-full" :src="cartItem.image" alt="">
             </div>
             <div class=" flex flex-col gap-[30px] ">
-                <span class="text-[16px] font-bold pt-[10px]">{{fruit.title}}</span>
+                <span class="text-[16px] font-bold pt-[10px]">{{cartItem.title}}</span>
                 <div class="flex justify-between items-center   " >
                     <div class="flex flex-col gap-[2px]">
                         <span class="text-[12px] text-[#9D9D9D]">Цена</span>
-                        <span class="text-[14px] font-bold mt-[-6px]">{{fruit.price}} тг/кг</span>
+                        <span class="text-[14px] font-bold mt-[-6px]">{{cartItem.price}} тг/кг</span>
                     </div>
-                    <div class="bg-[#FFFF] border-[1px] border-[#F2F2F2] rounded-[8px] flex items-center justify-center h-min-[32px] w-[32px] h-[32px] text-[#D3D3D3] font-bold text-[20px] ">
-                        +
+                    <div @click="$emit('removeItemCart', cartItem.id)" class="bg-[#FFFF] border-[1px] border-[#F2F2F2] rounded-[8px] flex items-center justify-center h-min-[32px] w-[32px] h-[32px] text-[#D3D3D3] font-bold text-[20px] ">
+                        <img src="../assets/closed.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -30,7 +30,10 @@
 <script setup>
 
 defineProps({
-    cartItem: Object
+    cartItem: Object,
+    title: String,
+
 })
+defineEmits(['removeItemCart'])
 
 </script>

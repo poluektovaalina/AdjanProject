@@ -18,8 +18,11 @@
                         <span class="text-[12px] text-[#9D9D9D]">Цена</span>
                         <span class="text-[14px] font-bold mt-[-6px]">{{fruit.price}} тг/кг</span>
                     </div>
-                    <div @click="() => addTooCart" class="cursor-pointer bg-[#FFFF] border-[1px] border-[#F2F2F2] rounded-[8px] flex items-center justify-center h-min-[32px] w-[32px] h-[32px] text-[#D3D3D3] font-bold text-[20px] ">
-                        +
+                    <div @click="$emit('addToCart', fruit)" class="cursor-pointer bg-[#FFFF] border-[1px] border-[#F2F2F2] rounded-[8px] flex items-center justify-center h-min-[32px] w-[32px] h-[32px] text-[#D3D3D3] font-bold text-[20px] ">
+                        <img src="../assets/noneSelectTovar.svg" alt="">
+                    </div>
+                    <div class="hidden" @click="noneSelectCart">
+                        <img src="../assets/selectTovar.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -32,11 +35,11 @@ defineProps({
     fruit: Object
 })
 
-function addTooCart(fruit){
-    const cartItems = JSON.parse(localStorage.getItem(('cart'))) || []
-    cartItems.push(fruit)
-    localStorage.setItem('cart', JSON.stringify(cartItems))
-}
+defineEmits(['addToCart'])
+
+
+
+
 
 </script>
 
