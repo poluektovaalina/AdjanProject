@@ -26,45 +26,93 @@ import { onMounted, ref } from 'vue'
 const fruits = ref(Data)
 const searchText = ref('')
 const cartItems = ref([])
-const
 
-let isOpenCart = ref(false)
+
+const isOpenCart = ref(false)
 
 function toggleCart() {
     isOpenCart.value = !isOpenCart.value
 
 }
 
-// fruits.value = fruits.value.map(item => ({
-//     ...item,
-//     isAdded: false
-// }))
-
-function addToCart(fruitCart) {
+//   
+function renderFruits() {
     const CartItemFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
     cartItems.value = CartItemFromLocalStorage || []
-    
-    if(fruitCart){
-        
-        cartItems.value.push(fruitCart)
-        localStorage.setItem('cart', JSON.stringify(cartItems.value))
-        
+    if(CartItemFromLocalStorage){
+        fruits.value = fruits.value.map(item => {
+                const findFruit = cartItems.value.find(fruitFromCart => fruitFromCart.id === item.id)
+                if(findFruit){
+                    return{
+                        ...item,
+                        isAdded: true  
+                    }
+                }
+                else{
+                    return{
+                        ...item,
+                        isAdded: false  
+                    }
+                } 
+            })
+
     }
-    // if (cartItems.value.length > 0) {
-    //     cartItems.value = cartItems.value.map(item => ({
-    //         ...item,
-    //         isAdded: false
-    //     }))
-    // }
+    else{
+        fruits.value = fruits.value.map(item => {
+            return{
+                ...item,
+                isAdded: false  
+            }
+        })
+    }
+
 }
 
+function addToCart(fruitCart) {
+
+    const isFoundFruit = cartItems.value.find(item => item.id === fruitCart.id)
+
+    
+    
+    if(!isFoundFruit){
+        cartItems.value.push(fruitCart)
+        localStorage.setItem('cart', JSON.stringify(cartItems.value))
+    }else{
+        cartItems.value = cartItems.value.filter(item => item.id != fruitCart.id)
+        localStorage.setItem('cart', JSON.stringify(cartItems.value))
+    }
+    
+    fruits.value = fruits.value.map(item => {
+        const findFruit = cartItems.value.find(fruitFromCart => fruitFromCart.id === item.id)
+        if(findFruit){
+            return{
+                ...item,
+                isAdded: true  
+            }
+        }
+        else{
+            return{
+                ...item,
+                isAdded: false  
+            }
+        } 
+    })
+    
+    console.log(cartItems)
+    console.log(fruits.value)
+    
+}
+
+
 onMounted(() => {
-    addToCart()
+    renderFruits()
+    
 })
 
 function removeItemCart(id) {
     cartItems.value = cartItems.value.filter(item => item.id != id)
     localStorage.setItem('cart', JSON.stringify(cartItems.value))
+    renderFruits()
 }
 
 

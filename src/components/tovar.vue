@@ -19,10 +19,7 @@
                         <span class="text-[14px] font-bold mt-[-6px]">{{fruit.price}} тг/кг</span>
                     </div>
                     <div @click="$emit('addToCart', fruit)" class="cursor-pointer bg-[#FFFF] border-[1px] border-[#F2F2F2] rounded-[8px] flex items-center justify-center h-min-[32px] w-[32px] h-[32px] text-[#D3D3D3] font-bold text-[20px] ">
-                        <img src="../assets/noneSelectTovar.svg" alt="">
-                    </div>
-                    <div class="hidden" @click="noneSelectCart">
-                        <img src="../assets/selectTovar.svg" alt="">
+                        <img :src=" fruit.isAdded ? '/selectTovar.svg' : '/noneSelectTovar.svg' " alt="">
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="flex flex-col gap-[10px] ">
+            <div class="flex flex-col gap-[10px]   v-auto-animate">
                 <CartItem  v-for="cartItem in cartItems" :key="cartItem.id" :cartItem="cartItem"  @removeItemCart="removeItemCart"/>
             </div>
         </div>
