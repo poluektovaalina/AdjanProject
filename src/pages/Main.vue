@@ -8,9 +8,18 @@
         <div v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1"></div>
         <Cart  v-if="toggleCart" :toggleCart="toggleCart" :isOpenCart="isOpenCart" :cartItems="cartItems" :removeItemCart="removeItemCart"/>
     </div>
+    <Quantity v-if="isOpenQKG" 
+    :kgModal 
+    :increment="increment" 
+    :decrement="decrement" 
+    :closeKgModal="closeKgModal" 
+    :priceQuant="priceQuant" 
+    :staticPrice="staticPrice" 
+    :changeValue="changeValue"/>
 </template>
 
 <script setup>
+import Quantity from '../components/Quantity.vue'
 import Header from '../components/Header.vue'
 import Slider from '../components/Slider.vue/'
 import Fruits from '../components/Fruits.vue/'
@@ -26,6 +35,10 @@ import { onMounted, ref } from 'vue'
 const fruits = ref(Data)
 const searchText = ref('')
 const cartItems = ref([])
+const kgModal = ref(0)
+const isOpenQKG = ref(true)
+const staticPrice = ref(0)
+const priceQuant = ref(0)
 
 
 const isOpenCart = ref(false)
@@ -33,6 +46,32 @@ const isOpenCart = ref(false)
 function toggleCart() {
     isOpenCart.value = !isOpenCart.value
 
+}
+
+function changeValue(e) {
+    kgModal.value = e.target.value
+    priceQuant.value = e.target.value * staticPrice.value
+}
+
+function closeKgModal() {
+    kgModal.value = 1
+    isOpenQKG.value = !isOpenQKG.value  
+}
+
+// function calculator()
+
+
+function increment (val) {
+    priceQuant.value = val
+    kgModal.value++
+    priceQuant.value = Number(priceQuant.value) * Number(kgModal.value)
+    // console.log(cartItems.price)
+    // fruitCart.value * kgModal.value === priceQuant
+}
+function decrement (val) {
+    priceQuant.value = val
+    kgModal.value--
+    priceQuant.value = Number(priceQuant.value) * Number(kgModal.value)
 }
 
 //   
@@ -69,7 +108,10 @@ function renderFruits() {
 }
 
 function addToCart(fruitCart) {
+    closeKgModal()
 
+    priceQuant.value = fruitCart.price
+    staticPrice.value = fruitCart.price
     const isFoundFruit = cartItems.value.find(item => item.id === fruitCart.id)
 
     
