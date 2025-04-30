@@ -17,7 +17,7 @@
             <div>
                 {{ priceQuant }} тг
             </div>
-            <button @click="closeKgModal" class="bg-[#1cdf1c] text-white font-bold font-sans p-[10px] rounded-[15px]">Добавить</button>
+            <button @click="() => addToCart(correctFruit)" class="bg-[#1cdf1c] text-white font-bold font-sans p-[10px] rounded-[15px]">Добавить</button>
         </div>
     </div>
 </template>
@@ -27,10 +27,10 @@ defineProps({
     kgModal: Number,
     increment: Function,
     decrement: Function,
-    closeKgModal: Function,
+    addToCart: Function,
     priceQuant: Number,
     staticPrice: Number,
-    changeValue: Function
+    correctFruit: Object,
 
 })
 

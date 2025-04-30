@@ -3,7 +3,7 @@
         <Header :toggleCart="toggleCart"/>
         <Slider />
         <search :onChange="onChange" />
-        <Fruits :fruits="fruits"  :addToCart="addToCart"/>
+        <Fruits :fruits="fruits"  :addToCart="addToCart" :closeKgModal="closeKgModal"/>
         <div v-if="isOpenCart" ></div>
         <div v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1"></div>
         <Cart  v-if="toggleCart" :toggleCart="toggleCart" :isOpenCart="isOpenCart" :cartItems="cartItems" :removeItemCart="removeItemCart"/>
@@ -12,10 +12,13 @@
     :kgModal 
     :increment="increment" 
     :decrement="decrement" 
-    :closeKgModal="closeKgModal" 
+    :addToCart="addToCart" 
     :priceQuant="priceQuant" 
     :staticPrice="staticPrice" 
-    :changeValue="changeValue"/>
+    :correctFruit="correctFruit"
+    :closeKgModal="closeKgModal"
+    :changeValue="changeValue"
+    />
 </template>
 
 <script setup>
@@ -36,12 +39,16 @@ const fruits = ref(Data)
 const searchText = ref('')
 const cartItems = ref([])
 const kgModal = ref(0)
-const isOpenQKG = ref(true)
+const isOpenQKG = ref(false)
 const staticPrice = ref(0)
 const priceQuant = ref(0)
 
+const correctFruit = ref({})
+
 
 const isOpenCart = ref(false)
+
+
 
 function toggleCart() {
     isOpenCart.value = !isOpenCart.value
@@ -53,9 +60,18 @@ function changeValue(e) {
     priceQuant.value = e.target.value * staticPrice.value
 }
 
-function closeKgModal() {
+function closeKgModal(fruit) {
+    if (fruit.isAdded) {
+        addToCart(fruit);
+        return;
+    }
     kgModal.value = 1
-    isOpenQKG.value = !isOpenQKG.value  
+    priceQuant.value = fruit.price
+    staticPrice.value = fruit.price
+    isOpenQKG.value = !isOpenQKG.value 
+    priceQuant.value = fruit.price
+    correctFruit.value = {...fruit, price:priceQuant.value}
+   
 }
 
 // function calculator()
@@ -108,15 +124,12 @@ function renderFruits() {
 }
 
 function addToCart(fruitCart) {
-    closeKgModal()
-
-    priceQuant.value = fruitCart.price
-    staticPrice.value = fruitCart.price
+    fruitCart.isAdded = true
+    isOpenQKG.value = !isOpenQKG.value 
     const isFoundFruit = cartItems.value.find(item => item.id === fruitCart.id)
-
-    
     
     if(!isFoundFruit){
+        fruitCart.price = priceQuant.value
         cartItems.value.push(fruitCart)
         localStorage.setItem('cart', JSON.stringify(cartItems.value))
     }else{

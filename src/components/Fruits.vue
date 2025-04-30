@@ -1,7 +1,7 @@
 <template>
     <div v-auto-animate>
         <div  v-if="fruits.length > 0" class="px-[60px] py-[40px] flex gap-[40px] flex-wrap">
-            <tovar @addToCart="addToCart" v-for="fruit in fruits" :key="fruit.id" :fruit="fruit"></tovar>
+            <tovar @closeKgModal="closeKgModal" @addToCart="addToCart" v-for="fruit in fruits" :key="fruit.id" :fruit="fruit"></tovar>
         </div>
         <div v-else class="h-[90vh] flex flex-col items-center justify-center ">
             <div>
@@ -16,7 +16,8 @@ import tovar from './tovar.vue';
 
 defineProps({
     fruits: Array,
-    addToCart: Function
+    addToCart: Function,
+    closeKgModal: Function
 })
 
 
