@@ -92,7 +92,8 @@ body{
             }
         }
     }
-    &.active{
+    &.activeLike{
+        background-color: #FEF0F0;
         svg{
             path{
                 transition: all 0.5s ease;

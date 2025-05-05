@@ -2,7 +2,9 @@
     <div class="flex py-[42px] px-[60px] justify-between items-center border-b-[1px] border-[#EAEAEA]" >
         <div class="flex gap-[13px] items-center">
             <div class="">
-                <img src="../assets/logo.svg" alt="">
+                <router-link to="/">
+                    <img src="../assets/logo.svg" alt="">
+                </router-link>
             </div>
             <div class="flex flex-col gap-[2px]">
                 <span class="text-[20px] text-[#000000]">NICE FRUITS</span>
@@ -20,6 +22,7 @@
                 </div>
                 <span class="text-[#5C5C5C] text-[14px] font-bold"> тг.</span>
             </div>
+            <router-link to="/favorites">
             <div class="flex items-center gap-[8px]">
                 <div class="icon1">
                     <svg width="19" height="17" viewBox="0 0 19 17" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -35,6 +38,7 @@
                 </div>
                 <span class="text-[#5C5C5C] text-[14px] ">Избарнное</span>
             </div>
+            </router-link>
             <div class="flex items-center gap-[8px]">
                 <div class="icon1">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

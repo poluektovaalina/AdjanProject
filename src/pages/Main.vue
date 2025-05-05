@@ -1,9 +1,8 @@
 <template>
     <div class="bg-white rounded-[20px]">
-        <Header :toggleCart="toggleCart"/>
         <Slider />
         <search :onChange="onChange" />
-        <Fruits :fruits="fruits"  :addToCart="addToCart" :closeKgModal="closeKgModal"/>
+        <Fruits :fruits="fruits"  :addToCart="addToCart" :closeKgModal="closeKgModal" :addLike="addLike"/>
         <div v-if="isOpenCart" ></div>
         <div v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1"></div>
         <Cart  v-if="toggleCart" :toggleCart="toggleCart" :isOpenCart="isOpenCart" :cartItems="cartItems" :removeItemCart="removeItemCart"/>
@@ -23,7 +22,6 @@
 
 <script setup>
 import Quantity from '../components/Quantity.vue'
-import Header from '../components/Header.vue'
 import Slider from '../components/Slider.vue/'
 import Fruits from '../components/Fruits.vue/'
 import search from '../components/Search.vue'
@@ -43,17 +41,15 @@ const isOpenQKG = ref(false)
 const staticPrice = ref(0)
 const priceQuant = ref(0)
 
+
 const correctFruit = ref({})
 
 
-const isOpenCart = ref(false)
+defineProps({
+    isOpenCart: Boolean,
+    toggleCart: Function
+})
 
-
-
-function toggleCart() {
-    isOpenCart.value = !isOpenCart.value
-
-}
 
 function changeValue(e) {
     kgModal.value = e.target.value
@@ -90,7 +86,8 @@ function decrement (val) {
     priceQuant.value = Number(priceQuant.value) * Number(kgModal.value)
 }
 
-//   
+
+//   Добавление в корзину и + картинку меняет
 function renderFruits() {
     const CartItemFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
     cartItems.value = CartItemFromLocalStorage || []
@@ -100,16 +97,19 @@ function renderFruits() {
                 if(findFruit){
                     return{
                         ...item,
-                        isAdded: true  
+                        isAdded: true,
+                        
                     }
                 }
                 else{
                     return{
                         ...item,
-                        isAdded: false  
+                        isAdded: false,
+                        isLiked: false  
                     }
                 } 
             })
+        
 
     }
     else{
@@ -123,8 +123,34 @@ function renderFruits() {
 
 }
 
+
+
+const isAddLike = ref([])
+
+function renderLike() {
+    const likesLS = JSON.parse(localStorage.getItem('like')) || [];
+    isAddLike.value = likesLS;
+    fruits.value = fruits.value.map(item => {
+        const isLiked = likesLS.find(items => items.id === item.id);
+        return { ...item, isLiked };
+    });
+}
+
+function addLike(fruit) {
+    const Likes = isAddLike.value.filter(item => item.id !== fruit.id);
+    if (Likes.length === isAddLike.value.length) {
+        isAddLike.value.push({ ...fruit, isLiked: true });
+    } else {
+        isAddLike.value = Likes;
+    }
+    fruits.value = fruits.value.map(item => ({
+        ...item,
+        isLiked: isAddLike.value.find(liked => liked.id === item.id)
+    }));
+    localStorage.setItem('like', JSON.stringify(isAddLike.value));
+}
+
 function addToCart(fruitCart) {
-    fruitCart.isAdded = true
     isOpenQKG.value = !isOpenQKG.value 
     const isFoundFruit = cartItems.value.find(item => item.id === fruitCart.id)
     
@@ -142,7 +168,8 @@ function addToCart(fruitCart) {
         if(findFruit){
             return{
                 ...item,
-                isAdded: true  
+                isAdded: true,
+                
             }
         }
         else{
@@ -161,7 +188,7 @@ function addToCart(fruitCart) {
 
 onMounted(() => {
     renderFruits()
-    
+    renderLike()
 })
 
 function removeItemCart(id) {
